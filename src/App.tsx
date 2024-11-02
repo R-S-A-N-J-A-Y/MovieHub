@@ -1,9 +1,9 @@
-import { FaApple } from "react-icons/fa";
+import Like from "./components/Like"
 
 function App() {
   return (
-    <div style={{margin: "10px 0 300px 700px"}}>
-      <FaApple size={"100px"} />
+    <div>
+      <Like onClick={() => console.log("Liked")}/>      
     </div>
   );
 }

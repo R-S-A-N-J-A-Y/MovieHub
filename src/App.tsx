@@ -1,14 +1,9 @@
-import { useState } from "react";
-import Alerts from "./components/Alerts";
-import Buttons from "./components/buttons";
+import { FaApple } from "react-icons/fa";
 
 function App() {
-
-  const [visible, setVisible] = useState(false);
   return (
-    <div>
-      {visible && <Alerts onClose={() => setVisible(false)}>My alert</Alerts>}
-      <Buttons color = "danger" onClick={() => setVisible(true) }>My Button</Buttons>
+    <div style={{margin: "10px 0 300px 700px"}}>
+      <FaApple size={"100px"} />
     </div>
   );
 }

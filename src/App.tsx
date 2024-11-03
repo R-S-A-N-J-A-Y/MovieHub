@@ -1,10 +1,8 @@
-import ExpandText from "./components/ExpandText";
+import Form from "./components/Form";
 
 function App() {
   return (
-    <ExpandText>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, provident.
-    </ExpandText>
+    <Form />
   );
 }
 

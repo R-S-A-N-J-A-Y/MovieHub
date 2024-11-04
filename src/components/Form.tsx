@@ -1,31 +1,36 @@
-import { FormEvent, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
+
+interface formData {
+  name: string;
+  age: number;
+}
 
 const Form = () => {
-  const [person, setPerson] = useState({
-    name: "",
-    age: '',
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<formData>();
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log(person);
-  };
-
+  const onSubmit = (data: FieldValues) => console.log(data);
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-3">
         <label htmlFor="nane" className="form-label">
           Name
         </label>
         <input
-          onChange={(event) =>
-            setPerson({ ...person, name: event.target.value })
-          }
-          value={person.name}
+          {...register("name", { required: true, minLength: 3 })}
           id="name"
           type="text"
           className="form-control"
         />
+        {errors.name?.type === "required" && (
+          <p className="text-danger">Name field is required.</p>
+        )}
+        {errors.name?.type === "minLength" && (
+          <p className="text-danger">Name contains atleast 3 letters.</p>
+        )}
       </div>
 
       <div className="mb-3">
@@ -33,14 +38,12 @@ const Form = () => {
           Age
         </label>
         <input
-          onChange={(event) =>
-            setPerson({ ...person, age: event.target.value })
-          }
-          value={person.age}
+          {...register("age", { required: true })}
           id="age"
           type="number"
           className="form-control"
         />
+        {errors.age?.type === 'required' && <p className="text-danger">Age feild is required.</p>}
       </div>
 
       <button type="submit" className="btn btn-primary">
